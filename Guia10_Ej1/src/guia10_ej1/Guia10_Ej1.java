@@ -35,7 +35,7 @@ public class Guia10_Ej1 {
         } while (!input.next().equalsIgnoreCase("n"));
 
         System.out.println("Las razas actuales son: \n" + perros.toString());
-        Collections.sort(perros);
+        //Collections.sort(perros);
         
         Iterator<String> it = perros.iterator();
         System.out.print("Ingrese una raza a buscar y eliminar de la lista: ");
@@ -48,7 +48,7 @@ public class Guia10_Ej1 {
                 fueEliminado = true;
             } 
         }
-
+        Collections.sort(perros);
         if (fueEliminado) {
             System.out.println("La raza "+perro+" fue eliminado con exito");
             System.out.println("Los perros restantes \n"+perros.toString());
