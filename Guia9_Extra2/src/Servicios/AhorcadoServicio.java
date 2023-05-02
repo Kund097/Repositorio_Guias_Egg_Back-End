@@ -16,17 +16,21 @@ public class AhorcadoServicio {
     public void asignarPalabra(Ahorcado j1) {
         int pos = (int) (Math.random()*20);
         j1.setpSecreta(j1.getPalabrasParaAdivinar()[pos].toCharArray());   
-        System.out.println("la palabra secreta es: "+Arrays.toString(j1.getpSecreta()));
+        //System.out.println("la palabra secreta es: "+Arrays.toString(j1.getpSecreta()));
     }
     
     public void mostrarLetrasEncontradas(Ahorcado j1,char encontrada,String pos) {
         int posicion;
-        for (int i = 0; i < pos.length(); i++) {
-            
+        for (int i = 0; i < pos.length(); i++) {           
             posicion =(int)(pos.charAt(i) - (int) '0');
-            j1.setLetras(posicion,encontrada);
+            j1.getLetras()[posicion] = encontrada;
         }
         System.out.println(" "+Arrays.toString(j1.getLetras()));
+    }
+    
+    public void letrasIngresadas(Ahorcado j1, String letra) {
+        j1.setIngresadas(j1.getIngresadas()+letra);
+        System.out.println("Letras ingresadas hasta ahora: "+Arrays.toString(j1.getIngresadas().toCharArray()));
     }
     
     /*Metodo crearJuego(): le pide la palabra al usuario y cantidad de jugadas máxima. 
@@ -39,7 +43,8 @@ public class AhorcadoServicio {
         System.out.println("Ingrese la cantidad de intentos para perder");
         j1.setJugadaMax(input.nextInt());
         j1.setFaltantes(j1.getpSecreta().length);
-        
+        j1.setLetras(j1.getpSecreta().length);
+        Arrays.fill(j1.getLetras(), ' ');
     }
 
     /*
@@ -96,7 +101,7 @@ public class AhorcadoServicio {
         if (!resultado) {
             j1.setJugadaMax(j1.getJugadaMax() - 1);
         }
-        System.out.println("\nLos intentos restantes: " + j1.getJugadaMax());
+        System.out.println("Los intentos restantes: " + j1.getJugadaMax());
     }
 
     /*
@@ -111,11 +116,12 @@ public class AhorcadoServicio {
         asignarPalabra(j1);
         crearJuego(j1);
         do {
-            System.out.println("Ingrese letra a buscar");
+            System.out.println("\nIngrese letra a buscar");
             letra = input.next();
             longitud(j1);
             buscar(j1, letra);
             resultado = encontradas(j1, letra);
+            letrasIngresadas(j1, letra);
             intentos(j1, resultado);
         } while (j1.getJugadaMax() != 0 && j1.getFaltantes() != 0);
 
@@ -125,6 +131,8 @@ public class AhorcadoServicio {
         else {
             System.out.println("Ganaste");
         }
+        System.out.println("La palabra secreta era: "
+                + "\n"+Arrays.toString(j1.getpSecreta()));
         
     }
 

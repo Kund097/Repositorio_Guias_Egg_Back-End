@@ -1,6 +1,5 @@
 package Entidades;
 
-import java.util.Arrays;
 
 /**
  * Juego Ahorcado: Crear una clase Ahorcado (como el juego), la cual deberá
@@ -18,13 +17,25 @@ public class Ahorcado {
     private int encontradas;
     private int faltantes;
     private char[] letras;
+    private String ingresadas;
+
+    public String getIngresadas() {
+        return ingresadas;
+    }
+
+    public void setIngresadas(String ingresadas) {
+        this.ingresadas = ingresadas;
+    }    
 
     public char[] getLetras() {
         return letras;
     }
 
-    public void setLetras(int pos,char encontrada) {
-        this.letras[pos] = encontrada;
+    public void setLetras(char[] letras) {
+        this.letras = letras;
+    }
+    public void setLetras(int longitud) {
+        this.letras = new char[longitud];
     }
 
     public String[] getPalabrasParaAdivinar() {
@@ -57,15 +68,15 @@ public class Ahorcado {
     
 
     public Ahorcado() {
+        this.ingresadas = "";
 
     }
 
     public Ahorcado(char[] pSecreta, int letrasEncontradas, int JugadaMax) {
+        this.ingresadas = "";
         this.pSecreta = pSecreta;
         this.letrasEncontradas = letrasEncontradas;
         this.jugadasMax = JugadaMax;
-        this.letras = new char[pSecreta.length];
-        Arrays.fill(this.letras, ' ');
     }
 
     public char[] getpSecreta() {
