@@ -48,7 +48,7 @@ public class Pelicula {
 
     @Override
     public String toString() {
-        return "Titulo: " +titulo + " director: " + director + " Duracion: " + duracionEnHoras;
+        return "Titulo: " +titulo + " director: " + director + " Duracion: " + duracionEnHoras + " hora/s";
     }
     
     

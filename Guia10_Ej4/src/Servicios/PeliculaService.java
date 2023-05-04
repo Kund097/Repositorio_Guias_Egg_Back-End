@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class PeliculaService {
 
-    private final Scanner input = new Scanner(System.in).useDelimiter("\n");
+    private final Scanner input = new Scanner(System.in, "ISO-8859-1").useDelimiter("\n");
     private ArrayList<Pelicula> peliculas;
 
     public Pelicula crearPelicula() {
@@ -45,7 +45,9 @@ public class PeliculaService {
         mostrarPeliculas();
         mostrarPeliculasMasDeUnaHora();
         ordenarPorDuracionMayorMenor();
-        
+        ordenarPorDuracionMenorAMayor();
+        ordenarPorDirector();
+        ordenarPorTitulo();
     }
 
     /**
@@ -104,7 +106,7 @@ public class PeliculaService {
         Collections.sort(peliculas, ordenarPorTituloAlfabeticamente);
         System.out.println("\n-------------Peliculas ordenadas por titulo alfabéticamente-------------");
         for (Pelicula pelicula : peliculas) {
-            System.out.println(pelicula);
+            System.out.println(pelicula.getTitulo());
         }
     }
     
@@ -115,7 +117,7 @@ public class PeliculaService {
         Collections.sort(peliculas, ordenarPorDirectorAlfabeticamente);
         System.out.println("\n-------------Peliculas ordenadas por director alfabéticamente-------------");
         for (Pelicula pelicula : peliculas) {
-            System.out.println(pelicula);
+            System.out.println(pelicula.getDirector());
         }
     }
 }
